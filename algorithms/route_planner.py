@@ -2,19 +2,20 @@ from models import truck, distance
 
 
 # Time Complexity -> O(n^3)
-# Space Complexity -> O(n)
+# Space Complexity -> O(1)
 def plan_route():
 
     # Loops through truck_fleet
     for i in range(len(truck.truck_fleet)):
-        # Sets hub as first address in route
+        # Sets the hub as the first address in the route
         truck.truck_fleet[i].route.append(distance.distances[1][0])
 
-        # Loops through packages loaded on truck
+        # Loops through all packages loaded on truck
         for p in range(len(truck.truck_fleet[i].packages)):
 
-            # Loops through distance CSV to find the matching addresses for distance value
+            # Loops through the distance CSV to find the matching addresses for distance value
             for d in range(len(distance.distances)):
+                # If the package address string is in the distance CSV string set the next location to the trucks route and break out of the loop
                 if truck.truck_fleet[i].packages[p].address in distance.distances[d][0]:
                     next_loc = distance.distances[d][0]
                     truck.truck_fleet[i].route.append(next_loc)
@@ -32,13 +33,13 @@ def plan_route():
 # Nearest Neighbor Algorithm
 def optimize_route(truck_route):
     for i in range(len(truck_route)-1):
-        # set minimum distance to the distance between the current and next stop
+        # Set minimum distance to the distance between the current and next stop
         min_distance = float(distance.get_distance(truck_route[i], truck_route[i+1]))
-        # set index of the minimum distance to the next stop
+        # Set index of the minimum distance to the next stop
         min_index = i+1
-        # loops through all stops in the route after current stop
+        # Loops through all stops in the route after current stop
         for j in range(i+1, len(truck_route)):
-            # calculate the distance between the current stop and the next stop
+            # Calculate the distance between the current stop and the next stop
             check_distance = float(distance.get_distance(truck_route[i], truck_route[j]))
             # If the distance between the current stop and the next stop being checked is smaller than the minimum distance,
             # set the minimum distance to the check distance and update the index of the minimum distance

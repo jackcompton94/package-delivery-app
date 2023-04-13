@@ -5,6 +5,7 @@ from models import package, truck
 
 
 def main_menu():
+    # While application is running and user did not select '5' to close
     while True:
         print("\n==== Welcome to WGUPS Simulation ====")
         print("1. View a package")
@@ -42,6 +43,7 @@ def view_package_details(package_id):
         print("Invalid input. Please enter an integer between 1 and 40.")
         return
 
+    # Prints a single package per the user entered package_id
     print(f"\n==== Package Details for Package {package_id} ====")
     p = package.package_hash.search(int(package_id))
     print(p)
@@ -50,6 +52,7 @@ def view_package_details(package_id):
 def view_truck_data(truck):
     print(f"\n==== Truck Data ====")
     total_mileage = 0
+    # Loops through the truck fleet and prints the sum of mileage traveled
     for i in range(len(truck.truck_fleet)):
         print(truck.truck_fleet[i])
         total_mileage += truck.truck_fleet[i].mileage
@@ -69,7 +72,7 @@ def view_all_packages_at_time(user_time):
         return
 
     print(f"\n==== Packages at {user_time} ====")
-
+    # Loops through all packages and captures the status at a specific user entered time
     for package_id in range(1, 41):
         p = package.package_hash.search(package_id)
         if time_delta < p.departure_time:
@@ -101,6 +104,7 @@ def view_a_package_at_time(package_id, user_time):
         print("Invalid time format. Please enter time in HH:MM format.")
         return
 
+    # Prints a single package and captures the status at a specific user entered time
     p = package.package_hash.search(package_id)
     if time_delta < p.departure_time:
         p.delivery_status = "at the hub"

@@ -5,7 +5,7 @@
 from models import truck, package
 
 
-# manually load trucks per package specifications
+# Manually load trucks per package specifications
 def load_trucks(truck_one, truck_two, truck_three):
     truck_one.packages = [
         package.package_hash.search(1),

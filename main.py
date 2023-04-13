@@ -3,7 +3,6 @@
 # C950 - DSA II
 # April 7th, 2023
 
-import datetime
 import menu
 from datetime import timedelta
 from models import package, truck, distance
