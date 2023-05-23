@@ -1,6 +1,6 @@
 # package-delivery-app
 
-The Package Delivery App is a Python application that utilizes a modified version of the nearest neighbor algorithm to generate an efficient package delivery tour. This algorithm helps optimize the delivery route by minimizing the distance traveled.
+The Package Delivery App is a Python application that utilizes a custom iteration of the nearest neighbor algorithm to generate an efficient package delivery route. This algorithm helps optimize the delivery route by minimizing the distance traveled.
 
 ## Features
 
